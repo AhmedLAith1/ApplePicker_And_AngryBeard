@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AppleTree : MonoBehaviour
 {
+	public Material greenMaterial;
+	public Material redMaterial;
+
 
 	public GameObject applePrefab;
 
@@ -14,9 +17,13 @@ public class AppleTree : MonoBehaviour
 	public float chanceToChangeDirections = 0.1f;
 
 	public float secondsBetweenAppleDrops = 1f;
+	private bool lastAppleWasGreen = false; // تتبع آخر لون مستخدم
+
 
 	void Start()
 	{
+		greenMaterial = Resources.Load<Material>("Mat_Apple_green");
+		redMaterial = Resources.Load<Material>("Mat_Apple_red");
 		Invoke("DropApple", 2f);
 	}
 
@@ -24,7 +31,25 @@ public class AppleTree : MonoBehaviour
 	{
 		GameObject apple = Instantiate<GameObject>(applePrefab);
 		apple.transform.position = transform.position;
+		Renderer appleRenderer = apple.GetComponent<Renderer>();
+		if (appleRenderer != null)
+		{
+			if (lastAppleWasGreen)
+			{
+
+				appleRenderer.sharedMaterial = greenMaterial;
+			}
+			else
+			{
+				appleRenderer.sharedMaterial = redMaterial;
+			}
+			lastAppleWasGreen = !lastAppleWasGreen;
+			// appleRenderer.sharedMaterial = (Random.value > 0.5f) ? greenMaterial : redMaterial;
+
+		}
 		Invoke("DropApple", secondsBetweenAppleDrops);
+
+
 	}
 
 	void Update()
@@ -66,6 +91,7 @@ public class AppleTree : MonoBehaviour
 		if (Random.value < chanceToChangeDirections)
 		{
 			speed *= -1;
+
 		}
 	}
 
