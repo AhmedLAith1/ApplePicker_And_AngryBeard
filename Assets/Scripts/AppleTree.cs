@@ -9,6 +9,8 @@ public class AppleTree : MonoBehaviour
 
 
 	public GameObject applePrefab;
+	public GameObject cubePrefab;
+
 
 	public float speed = 1f;
 
@@ -17,6 +19,8 @@ public class AppleTree : MonoBehaviour
 	public float chanceToChangeDirections = 0.1f;
 
 	public float secondsBetweenAppleDrops = 1f;
+	public float secondsBetweenCubeDrops = 1f;
+	public float chance = 0.02f;
 	private bool lastAppleWasGreen = false; // تتبع آخر لون مستخدم
 
 
@@ -24,13 +28,25 @@ public class AppleTree : MonoBehaviour
 	{
 		greenMaterial = Resources.Load<Material>("Mat_Apple_green");
 		redMaterial = Resources.Load<Material>("Mat_Apple_red");
-		Invoke("DropApple", 2f);
-	}
+		if (Random.value < chance)
+			Invoke("DropApple", 2f);
+		else Invoke("DropCube", 2f);
 
+	}
+	void DropCube()
+	{
+		GameObject cube = Instantiate<GameObject>(cubePrefab);
+		cube.transform.position = transform.position + Random.Range(2, 6) * Vector3.up;
+		if (Random.value < chance)
+			Invoke("DropApple", secondsBetweenCubeDrops);
+		else Invoke("DropCube", secondsBetweenAppleDrops);
+	}
 	void DropApple()
 	{
 		GameObject apple = Instantiate<GameObject>(applePrefab);
+
 		apple.transform.position = transform.position;
+
 		Renderer appleRenderer = apple.GetComponent<Renderer>();
 		if (appleRenderer != null)
 		{
@@ -47,7 +63,9 @@ public class AppleTree : MonoBehaviour
 			// appleRenderer.sharedMaterial = (Random.value > 0.5f) ? greenMaterial : redMaterial;
 
 		}
-		Invoke("DropApple", secondsBetweenAppleDrops);
+		if (Random.value < chance)
+			Invoke("DropApple", secondsBetweenCubeDrops);
+		else Invoke("DropCube", secondsBetweenAppleDrops);
 
 
 	}

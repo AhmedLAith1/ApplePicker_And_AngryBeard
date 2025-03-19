@@ -325,7 +325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basketPrefab: {fileID: 1158339035018160, guid: 611aaf69fdae00f40b352a07aba8c11f,
     type: 3}
-  numBaskets: 3
+  numBaskets: 4
   basketBottomY: -14
   basketSpacingY: 2
   basketList: []
@@ -385,6 +385,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114526022977148442, guid: 4e7ea7b35168b19408a39c0a41dabdae,
         type: 3}
+      propertyPath: chance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114526022977148442, guid: 4e7ea7b35168b19408a39c0a41dabdae,
+        type: 3}
+      propertyPath: cubePrefab
+      value: 
+      objectReference: {fileID: 1802311236479034719, guid: f770f3bac5cc94bfda09f05ae49f8da1,
+        type: 3}
+    - target: {fileID: 114526022977148442, guid: 4e7ea7b35168b19408a39c0a41dabdae,
+        type: 3}
       propertyPath: applePrefab
       value: 
       objectReference: {fileID: 1877831536070024, guid: d8fffbca63322d042829c9cb242be7fd,
@@ -393,6 +404,11 @@ PrefabInstance:
         type: 3}
       propertyPath: leftAndRightEdge
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114526022977148442, guid: 4e7ea7b35168b19408a39c0a41dabdae,
+        type: 3}
+      propertyPath: secondsBetweenCubeDrops
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114526022977148442, guid: 4e7ea7b35168b19408a39c0a41dabdae,
         type: 3}
