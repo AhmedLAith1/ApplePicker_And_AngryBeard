@@ -21,7 +21,7 @@ public class AppleTree : MonoBehaviour
 	public float secondsBetweenAppleDrops = 1f;
 	public float secondsBetweenCubeDrops = 1f;
 	public float chance = 0.02f;
-	private bool lastAppleWasGreen = false; // تتبع آخر لون مستخدم
+	private bool lastAppleWasGreen = false;
 
 
 	void Start()
